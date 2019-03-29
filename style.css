@@ -21,3 +21,4 @@ div#viewport{
 .green{background:#134e13}
 .blue{background:#556483}
 .res{padding:.6em 1.4em;color:#fff}
+.res:hover{border-top:4px solid black;border-top-left-radius:5px;border-top-right-radius:5px}

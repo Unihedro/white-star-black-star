@@ -3,3 +3,5 @@
 
 // prints "hi" in the browser's dev tools console
 console.log('hi');
+
+const [red, green, blue] = document.getElementsByClassName('res');
