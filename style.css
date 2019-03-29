@@ -9,3 +9,10 @@ h1 {
   font-style: italic;
   color: #373fff;
 }
+div#viewport{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
