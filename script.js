@@ -1,5 +1,6 @@
+//delete localStorage.things;
 var things = localStorage.things ? JSON.parse(localStorage.things) : [0,0,0,[],[],[],[],[],[]]
-
+// res, owned, tasks
 const resKeys = ['red','green','blue']
 const amountOfThings = resKeys.length
 var focus = null;
@@ -17,14 +18,17 @@ const tasks = {red: [
 var tasksLeft = {red:[],green:[],blue:[]}
 function render() {
   [red.innerText, green.innerText, blue.innerText] = things;
-  panelSwitcher.innerText = changePanel ? ['','☆★','☆☆','★☆','★★'][changeProgress] : ""
+  panelSwitcher.innerText = changePanel ? ['','☆★','☆☆','★☆','★★'][changeProgress] :
+                              things[amountOfThings + resKeys.indexOf(selectedPanel)]
   if (tasksInfo.innerText != "tasks:"+selectedPanel) {
     tasksInfo.innerText = "tasks:"+selectedPanel
     tasks.innerHTML = ""
   }
 }
+function getOwnedThings(thing){return things[amountOfThings + resKeys.indexOf(selectedPanel)]}
 function getResourceCap(thing){
   var initial = 50
+  var owned = getOwnedThings(thing);
   return initial;
 }
 
@@ -48,4 +52,7 @@ setInterval(function saveGame(){
 red.onmouseover = () => changePanel = focus = 'red'
 green.onmouseover = () => changePanel = focus = 'green'
 blue.onmouseover = () => changePanel = focus = 'blue';
-[red, green, blue].forEach(el => el.onmouseout = () => changePanel = null)
+[red, green, blue].forEach((el, i) => el.onmouseout = () => {
+  changePanel = null
+  if ()
+})
