@@ -1,15 +1,7 @@
-/* If you're feeling fancy you can add interactivity 
-    to your site with Javascript */
-
-// prints "hi" in the browser's dev tools console
-console.log('hi');
-
-var focus = null;
-
-var things = [0,0,0]
+var things = localStorage.things ? JSON.parse(localStorage.things) : [0,0,0]
 
 var resKeys = ['red','green','blue']
-
+var focus = null;
 function render() {
   [red.innerText, green.innerText, blue.innerText] = things;
 }
@@ -19,7 +11,8 @@ function gameTick(){
   render()
 }
 
-setInterval(gameTick, 100)
+setInterval(gameTick, 600)
+setInterval(function saveGame(){ localStorage.things = JSON.stringify(things) }, 10000)
 
 red.onmouseover = () => focus = 'red'
 green.onmouseover = () => focus = 'green'

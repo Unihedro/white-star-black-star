@@ -14,10 +14,14 @@ div#viewport{
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
-  text-align:center;width:60vw;height:40vh;background:black;box-shadow: 0 0 5px teal;-filter:grayscale()
+  text-align:center;width:60vw;height:40vh;background:black;box-shadow: 0 0 5px black,0 0 8px black,0 0 30px black;
+  
+  color:white;
+  -filter:grayscale()
 }
 #red{background:#601719}
 #green{background:#134e13}
 #blue{background:#556483}
 .res{padding:.6em 1.4em;color:#fff}
-.res:hover{border-top:4px solid black;border-top-left-radius:5px;border-top-right-radius:5px}
+@keyframes highlight1 { 0% { border-top:4px solid #cda800; } 100% { border-top:4px solid #ffe361; } }
+.res:hover{animation: .3s infinite alternate ease-in highlight1; border-top-left-radius:5px;border-top-right-radius:5px}
