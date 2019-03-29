@@ -14,7 +14,7 @@ div#viewport{
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
-  text-align:center;width:60vw;height:40vh;background:black;box-shadow: 0 0 5px black,0 0 8px black,0 0 30px black;
+text-align:center;width:80vw;height:80vh;background:black;box-shadow: 0 0 5px black,0 0 8px black,0 0 30px black;
   
   color:white;
   -filter:grayscale()
@@ -28,4 +28,4 @@ div#viewport{
 #tasksInfo{color:#000}
 .text-red    {color:#601719}
 .text-green  {color:#134e13}
-.text-blue   {color:#556483}
+.text-blue   {color:#556483}  text-blue   {color:#556483}

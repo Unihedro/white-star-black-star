@@ -8,7 +8,7 @@ var selectedPanel = 'red'
 var changePanel = null
 var changeProgress = 0
 const tasks = {red: [
-  {name:'■',cost:[8,0,0]},
+  {name:'■',cost:[8,0,0],text:"if selected, make resources even when out of hover"},
   {name:'□',cost:[5,5,5]},
   {name:'▤',cost:[24,0,0],moreCost:[{type:'□',amount:1,any:1}]},
   {name:'▥',cost:[16,16,16],moreCost:[{type:'□',amount:1,any:1}]}, // storage + 
@@ -54,5 +54,5 @@ green.onmouseover = () => changePanel = focus = 'green'
 blue.onmouseover = () => changePanel = focus = 'blue';
 [red, green, blue].forEach((el, i) => el.onmouseout = () => {
   changePanel = null
-  getOwnedThings(i)
+  getOwnedThings(i)['■'] || (focus = null)
 })
