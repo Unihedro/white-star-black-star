@@ -2,18 +2,27 @@ var things = localStorage.things ? JSON.parse(localStorage.things) : [0,0,0]
 
 var resKeys = ['red','green','blue']
 var focus = null;
+var selectedPanel = 'red'
+var changePanel = null
+var changeProgress = 0
 function render() {
   [red.innerText, green.innerText, blue.innerText] = things;
+  panelSwitcher.innerText = changePanel ? changeProgress && ['☆★','☆☆','☆★☆','☆★'][changeProgress] : ""
 }
 
 function gameTick(){
-  focus&&things[resKeys.indexOf(focus)]++
+  focus && things[resKeys.indexOf(focus)]++
+  if (changePanel) {
+    if (selectedPanel != changePanel)
+      changeProgress++
+  } else changeProgress = 0
   render()
 }
 
 setInterval(gameTick, 600)
 setInterval(function saveGame(){ localStorage.things = JSON.stringify(things) }, 10000)
 
-red.onmouseover = () => focus = 'red'
-green.onmouseover = () => focus = 'green'
-blue.onmouseover = () => focus = 'blue'
+red.onmouseover = () => changePanel = focus = 'red'
+green.onmouseover = () => changePanel = focus = 'green'
+blue.onmouseover = () => changePanel = focus = 'blue';
+[red, green, blue].forEach(el => el.onmouseout = () => changePanel = null)
