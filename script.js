@@ -1,5 +1,5 @@
-//delete localStorage.things;
-var things = localStorage.things ? JSON.parse(localStorage.things) : [0,0,0,[],[],[],[],[],[]]
+delete localStorage.things;
+var things = localStorage.things ? JSON.parse(localStorage.things) : [0,0,0,{'■':1,'□':2},{},{},[],[],[]]
 // res, owned, tasks
 const resKeys = ['red','green','blue']
 const amountOfThings = resKeys.length
@@ -18,16 +18,16 @@ const tasks = {red: [
 var tasksLeft = {red:[],green:[],blue:[]}
 function render() {
   [red.innerText, green.innerText, blue.innerText] = things;
-  panelSwitcher.innerText = changePanel ? ['','☆★','☆☆','★☆','★★'][changeProgress] :
-                              things[amountOfThings + resKeys.indexOf(selectedPanel)]
+  panelSwitcher.innerText = changeProgress ? ['','☆★','☆☆','★☆','★★'][changeProgress] :
+                              Object.entries(getOwnedThings()).map(([a, b])=>b == 1 ? a : b + a).join(' ')
   if (tasksInfo.innerText != "tasks:"+selectedPanel) {
     tasksInfo.innerText = "tasks:"+selectedPanel
     tasks.innerHTML = ""
   }
 }
-function getOwnedThings(thing){return things[amountOfThings + resKeys.indexOf(selectedPanel)]}
+function getOwnedThings(thing = resKeys.indexOf(selectedPanel)){return things[amountOfThings + thing]}
 function getResourceCap(thing){
-  var initial = 50
+  var initial = 32
   var owned = getOwnedThings(thing);
   return initial;
 }
@@ -39,7 +39,7 @@ function gameTick(){
   }
   if (changePanel && selectedPanel != changePanel) {
       if (++changeProgress == 5)
-        [selectedPanel, changePanel] = [changePanel, null]
+        selectedPanel = changePanel, changePanel = null, changeProgress = 0
   } else changeProgress = 0
   render()
 }
@@ -54,5 +54,5 @@ green.onmouseover = () => changePanel = focus = 'green'
 blue.onmouseover = () => changePanel = focus = 'blue';
 [red, green, blue].forEach((el, i) => el.onmouseout = () => {
   changePanel = null
-  if ()
+  getOwnedThings(i)
 })
