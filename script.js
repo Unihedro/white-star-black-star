@@ -5,7 +5,13 @@ var focus = null;
 var selectedPanel = 'red'
 var changePanel = null
 var changeProgress = 0
-var tasksLeft = {red: [], green:[],blue:[]}
+var tasksLeft = {red: [
+  {name:'■',cost:[8,0,0]},
+  {name:'□',cost:[5,5,5]},
+  {name:'▤',cost:[24,0,0],moreCost:[{type:'□',amount:1,any:1}]},
+  {name:'▥',cost:[16,16,16],moreCost:[{type:'□',amount:1,any:1}]},
+  {name:'▦',cost:[8,16,16],moreCost:[{type:'▤',amount:1},{type:'▥',amount:1}]},
+   ,'','','','','▣'], green:[],blue:[]}
 function render() {
   [red.innerText, green.innerText, blue.innerText] = things;
   panelSwitcher.innerText = changePanel ? ['','☆★','☆☆','★☆','★★'][changeProgress] : ""
