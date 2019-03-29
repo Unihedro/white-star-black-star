@@ -5,16 +5,19 @@ var focus = null;
 var selectedPanel = 'red'
 var changePanel = null
 var changeProgress = 0
+var tasksLeft = {red: [], green:[],blue:[]}
 function render() {
   [red.innerText, green.innerText, blue.innerText] = things;
   panelSwitcher.innerText = changePanel ? ['','☆★','☆☆','★☆','★★'][changeProgress] : ""
-  tasksInfo.innerText = "tasks:"+selectedPanel
+  if (tasksInfo.innerText != "tasks:"+selectedPanel) {
+    tasksInfo.innerText = "tasks:"+selectedPanel
+    tasks.innerHTML = ""
+  }
 }
 
 function gameTick(){
   focus && things[resKeys.indexOf(focus)]++
-  if (changePanel) {
-    if (selectedPanel != changePanel)
+  if (changePanel && selectedPanel != changePanel) {
       if (++changeProgress == 5)
         [selectedPanel, changePanel] = [changePanel, null]
   } else changeProgress = 0
