@@ -1,5 +1,4 @@
-delete localStorage.things;
-var things = localStorage.things ? JSON.parse(localStorage.things) : [0,0,0,{'■':1,'□':2},{},{},[],[],[]]
+var things = localStorage.things ? JSON.parse(localStorage.things) : [0,0,0,{},{},{},[],[],[]]
 // res, owned, tasks
 const resKeys = ['red','green','blue']
 const amountOfThings = resKeys.length
@@ -7,7 +6,7 @@ var focus = null;
 var selectedPanel = 'red'
 var changePanel = null
 var changeProgress = 0
-const tasks = {red: [
+const tasksToUse = {red: [
   {name:'■',cost:[8,0,0],text:"if selected, make resources even when out of hover"},
   {name:'□',cost:[5,5,5]},
   {name:'▤',cost:[24,0,0],moreCost:[{type:'□',amount:1,any:1}]},
@@ -22,7 +21,7 @@ function render() {
                               Object.entries(getOwnedThings()).map(([a, b])=>b == 1 ? a : b + a).join(' ')
   if (tasksInfo.innerText != "tasks:"+selectedPanel) {
     tasksInfo.innerText = "tasks:"+selectedPanel
-    tasks.innerHTML = ""
+    tasks.innerText = "TODO: upgrades for "+selectedPanel
   }
 }
 function getOwnedThings(thing = resKeys.indexOf(selectedPanel)){return things[amountOfThings + thing]}
